@@ -1,0 +1,11 @@
+async function getQuote() {
+    const response = await fetch('/quote');
+    const data = await response.json();
+    document.getElementById('quote').innerText = data;
+}
+
+function shareQuote() {
+    const quote = document.getElementById('quote').innerText;
+    const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(quote)}`;
+    window.open(url, '_blank');
+}
