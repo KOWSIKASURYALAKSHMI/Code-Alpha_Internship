@@ -1,0 +1,20 @@
+from flask import Flask, jsonify, render_template
+import random
+import json
+
+app = Flask(__name__)
+
+# Load quotes from a JSON file
+with open('quotes.json', 'r') as file:
+    quotes = json.load(file)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/quote')
+def quote():
+    return jsonify(random.choice(quotes))
+
+if __name__ == '__main__':
+    app.run(debug=True)
